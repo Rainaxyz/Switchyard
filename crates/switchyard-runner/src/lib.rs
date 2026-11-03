@@ -23,7 +23,10 @@ mod route;
 mod runner;
 
 #[cfg(not(target_os = "wasi"))]
-pub use config::{ConfiguredTarget, RouteTargets, TargetModel, api_key_variables, route_targets};
+pub use config::{
+    ConfiguredTarget, DeploymentConfig as RunnerConfig, RequirementScope, RouteTargets,
+    TargetEligibilityConfig, TargetModel, api_key_variables, route_targets,
+};
 /// Compatibility names for the effective target requirements.
 #[cfg(not(target_os = "wasi"))]
 pub use eligibility::{
