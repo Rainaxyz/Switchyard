@@ -6,9 +6,8 @@
 //! These helpers mutate the normalized request. A codec asked to encode for the format the
 //! request arrived in replays the body captured at decode instead of reading that
 //! request — so an addition that leaves exact replay in place never reaches the
-//! model. This is not enforced: a future processor that mutates the request and
-//! forgets the call reintroduces SWITCH-1224, silently and without a failing
-//! test.
+//! model. A processor that changes the request must also invalidate the
+//! preserved body so the codec sends those changes.
 
 use switchyard_protocol::{ContentBlock, InstructionBlock, Message, Request, Role};
 

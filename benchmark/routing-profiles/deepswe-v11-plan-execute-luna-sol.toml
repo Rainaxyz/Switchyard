@@ -25,7 +25,7 @@
 #                  promotional pricing excluded
 #
 # The routing parameters below are exactly as run. The measured runs reached the
-# same models through NVIDIA Inference Hub. This profile uses OpenRouter so it can
+# same models through a different gateway. This profile uses OpenRouter so it can
 # run as written with an `OPENROUTER_API_KEY`. Absolute results may vary by serving
 # stack.
 #
