@@ -10,7 +10,7 @@ use parking_lot::Mutex;
 use switchyard_protocol::{Category, ContentBlock, Request};
 
 use super::util::affinity::starts_user_turn;
-use super::util::prompts::{append_note, drop_exact_replay, prepend_system_prompt};
+use super::util::prompts::{append_note, drop_exact_replay};
 use super::util::tool_signals::{ToolSemantics, ToolSignals};
 use crate::core::algorithm::{Algorithm, Driver, RoutingIdentity};
 use crate::{
@@ -236,7 +236,9 @@ impl Algorithm for PlanExecute {
         }
         match phase {
             Phase::Plan => {
-                prepend_system_prompt(&mut request, &self.config.planning_prompt);
+                request
+                    .llm_request
+                    .prepend_system_prompt(&self.config.planning_prompt);
                 tracing::debug!(phase = "plan", "plan-execute selected capable tier");
                 Self::route_to(&driver, Category::Capable, request)
             }
